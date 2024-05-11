@@ -39,6 +39,11 @@
 
 <button id="playAll" onclick="playAllRadios()">Play All/ Reset</button>
 <button id="addStation" onclick="promptForNewStation()">Add New Station</button>
+    
+    
+</br></br>
+<center><h3>Warning, This site will not balance the audio automatically between sources.</br>No Audio Files are Hosted here, only M3U Playlists.</h3></br><small>This button will allow you to recreate the page for yourself, excuse my mess</br></small></center>
+
 
 <script>
 var radios = {}; // This will hold the radio elements and their M3U URLs
@@ -126,7 +131,7 @@ function addRadio(stationName, m3uUrl, iconUrl) {
 }
 
 // Initial setup of stations
-addRadio('Galaxy News', 'https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Fallout_3_galaxy_news_radio-2008_vbr.m3u', 'https://ia801702.us.archive.org/25/items/Fallout_3_galaxy_news_radio-2008/folder.png');
+addRadio('Galaxy News', 'https://raw.githubusercontent.com/SnapshotSam/TESTM3U.github.io/main/M3Us/Fallout_3_galaxy_news_radio-2008_vbr.m3u', 'https://ia801702.us.archive.org/25/items/Fallout_3_galaxy_news_radio-2008/folder.png');
 addRadio('Radio Las Santos', 'https://archive.org/download/radio-los-santos-gta-v/radio-los-santos-gta-v_vbr.m3uu', 'https://i.scdn.co/image/ab67706c0000da84cb4d487c981320e512939ee3');
 addRadio('Liberty City Rock', 'https://archive.org/download/every-picture-tells-a-story/every-picture-tells-a-story_vbr.m3u', 'https://ia804709.us.archive.org/22/items/every-picture-tells-a-story/Liberty_Rock_Radio_thumb.jpg?cnt=0');
 addRadio('Jet Set Radio', 'https://archive.org/download/08.-electric-tooth-brush/08.-electric-tooth-brush_vbr.m3u', 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/09/0999a29dc39d4db65206af0c403369a32c0c10de_full.jpg');
