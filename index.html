@@ -78,8 +78,9 @@ function fetchM3UAndPlayRandomTrack(radioElement, m3uUrl) {
     .then(response => response.text())
     .then(m3uContent => {
       const tracks = parseM3U(m3uContent);
-      const randomTrackUrl = tracks[Math.floor(Math.random() * tracks.length)];
-      playTrack(radioElement, randomTrackUrl);
+      const randomTrackIndex = Math.floor(Math.random() * tracks.length);
+      const randomTrackUrl = tracks[randomTrackIndex];
+      playTrack(radioElement, randomTrackUrl, tracks); // Pass the tracks array to playTrack
     })
     .catch(error => console.error('Error fetching or parsing M3U file:', error));
 }
@@ -92,10 +93,18 @@ function parseM3U(m3uContent) {
 }
 
 // Function to play a given track on a radio element
-function playTrack(radioElement, trackUrl) {
+function playTrack(radioElement, trackUrl, tracks) {
   radioElement.src = trackUrl;
   radioElement.load();
   radioElement.play();
+
+  // When the current track ends, play the next one
+  radioElement.onended = function() {
+    let currentTrackIndex = tracks.indexOf(trackUrl);
+    let nextTrackIndex = (currentTrackIndex + 1) % tracks.length; // Loop back to the first track if at the end
+    let nextTrackUrl = tracks[nextTrackIndex];
+    playTrack(radioElement, nextTrackUrl, tracks); // Recursively play the next track
+  };
 }
 
 // Function to prompt for new station details and add it
@@ -117,7 +126,7 @@ function addRadio(stationName, m3uUrl, iconUrl) {
   var newRadioElement = document.createElement('audio');
   newRadioElement.id = newRadioId;
   newRadioElement.controls = true;
-  newRadioElement.loop = true;
+  newRadioElement.loop = false;
   newRadioElement.style.display = 'none'; // Hide the audio controls
   document.body.appendChild(newRadioElement);
 
